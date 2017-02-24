@@ -1,5 +1,5 @@
 # Arquillian Rest Extension With Embedded Glassfish and JUnit Example 
-A Rest API with JAX-RS with Integration Tests implemented on [Arquillian](https://github.com/arquillian) and executed against an embedded instance of Glassfish [WildFly](https://embedded-glassfish.java.net/).
+A Rest API with JAX-RS with Integration Tests implemented on [Arquillian](https://github.com/arquillian) and executed against an embedded instance of [Glassfish](https://embedded-glassfish.java.net/).
 
 ## Test Content
 In the [Arquillian XML](https://github.com/Lemmy4555/arquillian-rest-extension-embedded-server-example/blob/master/src/test/resources/arquillian.xml) the container's configuration reside.
