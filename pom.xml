@@ -1,0 +1,114 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.sc.l45.examples.arquillian.rest</groupId>
+	<artifactId>arquillian-rest-extension-example</artifactId>
+	<version>1.0.0</version>
+	<packaging>war</packaging>
+
+	<name>arquillian-rest-extension-example</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
+
+	<dependencies>
+	  <!-- logs -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+      <version>1.7.23</version>
+    </dependency>
+    
+    <!-- api -->
+		<dependency>
+			<groupId>javax.ws.rs</groupId>
+			<artifactId>javax.ws.rs-api</artifactId>
+			<version>2.1-m03</version>
+		</dependency>
+		<dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>3.5</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.enterprise</groupId>
+      <artifactId>cdi-api</artifactId>
+      <version>2.0-PFD</version>
+    </dependency>
+		
+    <!-- test -->
+    <!-- I provide all dependecies to run glassfish and arquillian correctly -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+    <dependency>
+      <groupId>org.jboss.resteasy</groupId>
+      <artifactId>resteasy-jackson-provider</artifactId>
+      <version>3.1.0.Final</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- Arquillian -->
+    <dependency>
+      <groupId>org.jboss.arquillian.container</groupId>
+      <artifactId>arquillian-glassfish-embedded-3.1</artifactId>
+      <version>1.0.0.Final</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.arquillian.extension</groupId>
+      <artifactId>arquillian-rest-client-impl-3x</artifactId>
+      <version>1.0.0.Alpha4</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.arquillian.junit</groupId>
+      <artifactId>arquillian-junit-container</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <!-- Glassfish -->
+    <dependency>
+      <groupId>org.glassfish.main.extras</groupId>
+      <artifactId>glassfish-embedded-all</artifactId>
+      <version>4.1.1</version>
+      <scope>test</scope>
+    </dependency>
+	</dependencies>
+	
+	<dependencyManagement>
+    <dependencies>
+	    <dependency>
+        <groupId>org.jboss.arquillian</groupId>
+        <artifactId>arquillian-bom</artifactId>
+        <version>1.1.12.Final</version>
+        <type>pom</type>
+        <scope>import</scope>
+	    </dependency>
+    </dependencies>
+  </dependencyManagement>
+  
+  <build>
+    <plugins>
+      <plugin>
+         <groupId>org.apache.maven.plugins</groupId>
+         <artifactId>maven-surefire-plugin</artifactId>                       
+         <configuration>
+             <systemPropertyVariables>                               
+                 <arquillian.launch>glassfish-embedded</arquillian.launch>
+             </systemPropertyVariables>
+             <excludes>
+		            <exclude>**/TestConf.java</exclude>
+		          </excludes>
+         </configuration>
+      </plugin>
+    </plugins>
+  </build>
+	
+</project>
